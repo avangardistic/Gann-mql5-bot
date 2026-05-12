@@ -185,7 +185,6 @@ Optimization: false
 
 ## 📞 ارتباط با توسعه‌دهنده
 
-- **نویسنده:** Hossein Parasteh
 - **گیت‌هاب:** [github.com/avangardistic](https://github.com/avangardistic)
 
 ---
