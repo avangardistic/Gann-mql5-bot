@@ -1,9 +1,5 @@
 # ربات معاملاتی Gann Bot v3.0
 
-**نویسنده:** Hossein Parasteh  
-**گیت‌هاب:** [github.com/avangardistic](https://github.com/avangardistic)
-
----
 
 ## 📖 معرفی
 
