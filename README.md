@@ -1,12 +1,3 @@
-MQL5\
-├── Indicators\
-│   └── GannBox.ex5      (اندیکاتور )
-│
-└── Experts\
-    └── GannBot_v3.ex5   (ربات)
-	
-	
-
 # ربات معاملاتی Gann Bot v3.0
 
 **نویسنده:** Hossein Parasteh  
