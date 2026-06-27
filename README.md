@@ -1,189 +1,211 @@
-# ربات معاملاتی Gann Bot v3.0
+# Gann Bot v3.0
 
-
-## 📖 معرفی
-
-ربات معاملاتی خودکار Gann Bot بر اساس **جعبه‌های گان (Gann Box)** و **مدیریت سرمایه داینامیک** طراحی شده است. این ربات با تحلیل خطوط حمایت و مقاومت داینامیک (بالا و پایین جعبه گان) اقدام به ورود به معامله می‌کند.
+An automated trading bot for MetaTrader 5 built around **Gann Box analysis** and **dynamic money management**.
 
 ---
 
-## 🚀 ویژگی‌های کلیدی
+## 📖 Overview
 
-| ویژگی | توضیح |
-|-------|-------|
-| 📊 **مدیریت سرمایه داینامیک** | ۴ روش مختلف: حجم ثابت، درصد ریسک، معیار کلی (Kelly)، آنتی مارتینگیل |
-| 🛡️ **کنترل ریسک پیشرفته** | حد ضرر روزانه، توقف پس از ضرر متوالی، تریلینگ استاپ |
-| 📈 **نسبت ریسک به ریوارد 1:2** | حد سود ۲ برابر حد ضرر (پیش‌فرض 300/600 پیپ) |
-| 🔧 **قابل تنظیم کامل** | تمام پارامترها قابل تغییر توسط کاربر |
-| 🖥️ **نمایش اطلاعات لحظه‌ای** | نمایش موجودی، وضعیت معاملات و آمار روی چارت |
+**Gann Bot v3.0** is an automated trading robot designed based on **Gann Boxes** and **dynamic capital management** strategies.  
+It enters trades by analyzing dynamic support and resistance levels derived from the **upper and lower boundaries of the Gann Box**.
 
----
+The bot is built to provide:
 
-## 📁 فایل‌های مورد نیاز
-
-| فایل | مسیر | توضیح |
-|------|------|-------|
-| `GannBot_v3.ex5` | `MQL5\Experts\` | فایل اجرایی ربات |
-| `GannBox.ex5` | `MQL5\Indicators\` | اندیکاتور Gann Box (وابستگی) |
-
-> **توجه:** ربات به اندیکاتور `GannBox` نیاز دارد. هر دو فایل باید در مسیرهای صحیح قرار گیرند.
+- Smarter position sizing
+- Advanced risk control
+- Flexible parameter customization
+- Real-time chart information display
 
 ---
 
-## ⚙️ تنظیمات ورودی (Input Parameters)
+## 🚀 Key Features
 
-### مدیریت سرمایه
-
-| پارامتر | مقدار پیش‌فرض | توضیح |
-|---------|--------------|-------|
-| `MoneyManagement` | 1 (Risk%) | 0=حجم ثابت، 1=درصد ریسک، 2=معیار کلی، 3=آنتی مارتینگیل |
-| `FixedLot` | 0.1 | حجم ثابت (در حالت MM_FIXED) |
-| `RiskPercent` | 2.0 | درصد ریسک از سرمایه (در حالت MM_RISK_PERCENT) |
-
-### حد ضرر و سود
-
-| پارامتر | مقدار پیش‌فرض | توضیح |
-|---------|--------------|-------|
-| `StopLoss` | 300 | حد ضرر به پیپ |
-| `TakeProfit` | 600 | حد سود به پیپ (نسبت 1:2) |
-
-### مدیریت ریسک
-
-| پارامتر | مقدار پیش‌فرض | توضیح |
-|---------|--------------|-------|
-| `MaxDailyLoss` | 5.0 | حداکثر ضرر روزانه (درصد) |
-| `MaxConsecutiveLosses` | 3 | حداکثر ضرر متوالی قبل از توقف |
-| `UseTrailingStop` | true | فعال/غیرفعال کردن تریلینگ استاپ |
-| `TrailingStart` | 200 | شروع تریلینگ (پیپ) |
-| `TrailingStep` | 30 | گام تریلینگ (پیپ) |
-
-### تنظیمات تایم‌فریم
-
-| پارامتر | مقدار پیش‌فرض | توضیح |
-|---------|--------------|-------|
-| `GannTimeframe` | PERIOD_H4 | تایم‌فریم جعبه گان (H4، D1، W1) |
-| `Slippage` | 30 | حداکثر لغزش مجاز (پیپ) |
+| Feature | Description |
+|--------|-------------|
+| 📊 **Dynamic Money Management** | 4 different modes: Fixed Lot, Risk Percentage, Kelly Criterion, and Anti-Martingale |
+| 🛡️ **Advanced Risk Control** | Daily loss limit, stop after consecutive losses, trailing stop |
+| 📈 **1:2 Risk-to-Reward Ratio** | Default setup uses 300 pips stop loss and 600 pips take profit |
+| 🔧 **Fully Customizable** | All parameters can be adjusted by the user |
+| 🖥️ **Real-Time Chart Info** | Displays balance, trade status, and statistics directly on the chart |
 
 ---
 
-## 🚀 نحوه نصب و اجرا
+## 📁 Required Files
 
-### مرحله 1: نصب فایل‌ها
+| File | Path | Description |
+|------|------|-------------|
+| `GannBot_v3.ex5` | `MQL5/Experts/` | Expert Advisor executable |
+| `GannBox.ex5` | `MQL5/Indicators/` | Required Gann Box custom indicator |
+
+> **Important:** The bot depends on the `GannBox` indicator.  
+> Both files must be placed in the correct directories.
+
+---
+
+## ⚙️ Input Parameters
+
+### Money Management
+
+| Parameter | Default | Description |
+|----------|---------|-------------|
+| `MoneyManagement` | `1` (Risk%) | `0 = Fixed Lot`, `1 = Risk Percentage`, `2 = Kelly Criterion`, `3 = Anti-Martingale` |
+| `FixedLot` | `0.1` | Fixed trade volume when using `MM_FIXED` |
+| `RiskPercent` | `2.0` | Risk percentage per trade when using `MM_RISK_PERCENT` |
+
+### Stop Loss & Take Profit
+
+| Parameter | Default | Description |
+|----------|---------|-------------|
+| `StopLoss` | `300` | Stop loss in pips |
+| `TakeProfit` | `600` | Take profit in pips (`1:2` risk-to-reward ratio) |
+
+### Risk Management
+
+| Parameter | Default | Description |
+|----------|---------|-------------|
+| `MaxDailyLoss` | `5.0` | Maximum daily loss in percentage |
+| `MaxConsecutiveLosses` | `3` | Maximum allowed consecutive losing trades before stopping |
+| `UseTrailingStop` | `true` | Enable or disable trailing stop |
+| `TrailingStart` | `200` | Start trailing after this many pips in profit |
+| `TrailingStep` | `30` | Trailing stop step in pips |
+
+### Timeframe & Execution
+
+| Parameter | Default | Description |
+|----------|---------|-------------|
+| `GannTimeframe` | `PERIOD_H4` | Gann Box timeframe (`H4`, `D1`, `W1`) |
+| `Slippage` | `30` | Maximum allowed slippage in pips |
+
+---
+
+## 🚀 Installation & Setup
+
+### Step 1: Copy the Files
 
 ```bash
-# کپی فایل اندیکاتور
-GannBox.ex5  →  MQL5/Indicators/
+# Copy indicator
+GannBox.ex5  ->  MQL5/Indicators/
 
-# کپی فایل ربات
-GannBot_v3.ex5  →  MQL5/Experts/
+# Copy expert advisor
+GannBot_v3.ex5  ->  MQL5/Experts/
 ```
 
-### مرحله 2: کامپایل (در صورت نیاز)
+### Step 2: Compile (If Needed)
 
-1. متاتریدر 5 را باز کنید
-2. کلید **F4** را بزنید تا MetaEditor باز شود
-3. فایل‌ها را باز کرده و **Compile (F7)** را بزنید
+1. Open **MetaTrader 5**
+2. Press **F4** to open **MetaEditor**
+3. Open the files and click **Compile (F7)**
 
-### مرحله 3: اجرای ربات
+### Step 3: Run the Bot
 
-1. در متاتریدر، از منوی **View → Navigator** (یا Ctrl+N)
-2. بخش **Experts** را باز کنید
-3. روی **GannBot_v3** دابل کلیک کنید یا به چارت بکشید
-4. تنظیمات دلخواه را اعمال کنید
-5. دکمه **OK** را بزنید
+1. In MetaTrader, go to **View → Navigator** or press **Ctrl+N**
+2. Open the **Experts** section
+3. Double-click **GannBot_v3** or drag it onto a chart
+4. Adjust the settings as desired
+5. Click **OK**
 
-### مرحله 4: تست در Strategy Tester
+### Step 4: Test in Strategy Tester
 
-```
+```txt
 Symbol: GBPUSD
-Period: H4 (توصیه می‌شود)
-Date: محدوده دلخواه
+Period: H4 (recommended)
+Date: Any desired range
 Optimization: false
 ```
 
 ---
 
-## 📊 روش‌های مدیریت سرمایه
+## 📊 Money Management Modes
 
-### 1. حجم ثابت (MM_FIXED = 0)
-همیشه با حجم مشخص شده (`FixedLot`) معامله می‌کند.
+### 1. Fixed Lot (`MM_FIXED = 0`)
+Trades with a constant lot size defined by `FixedLot`.
 
-### 2. درصد ریسک (MM_RISK_PERCENT = 1) - **توصیه شده**
-هر معامله حداکثر `RiskPercent` درصد از سرمایه را ریسک می‌کند. حجم معامله بر اساس فاصله تا حد ضرر محاسبه می‌شود.
+### 2. Risk Percentage (`MM_RISK_PERCENT = 1`) — Recommended
+Each trade risks up to `RiskPercent` percent of account equity.  
+Lot size is calculated based on the stop loss distance.
 
-```
-فرمول: حجم = (سرمایه × درصد ریسک) / (فاصله حد ضرر × ارزش هر پیپ)
-```
-
-### 3. معیار کلی (MM_KELY = 2)
-بر اساس عملکرد گذشته (نرخ برد و نسبت سود به ضرر) حجم بهینه را محاسبه می‌کند. مناسب برای حساب‌های با سابقه معاملاتی بالا.
-
-### 4. آنتی مارتینگیل (MM_ANTI_MARTINGALE = 3)
-- بعد از هر معامله برنده: حجم افزایش می‌یابد
-- بعد از هر معامله بازنده: حجم کاهش می‌یابد
-
----
-
-## 🛡️ ویژگی‌های مدیریت ریسک
-
-### حد ضرر روزانه
-اگر ضرر روزانه به `MaxDailyLoss` درصد برسد، ربات تا روز بعد معامله جدیدی باز نمی‌کند.
-
-### توقف در ضرر متوالی
-بعد از `MaxConsecutiveLosses` ضرر پشت سر هم، ربات به طور خودکار متوقف می‌شود.
-
-### تریلینگ استاپ
-بعد از رسیدن سود به `TrailingStart` پیپ، حد ضرر به صورت خودکار به اندازه `TrailingStep` پیپ جلو می‌رود تا سود محافظت شود.
-
----
-
-## 📈 تنظیمات پیشنهادی برای بازارهای مختلف
-
-| بازار | تایم‌فریم | StopLoss | TakeProfit | RiskPercent |
-|-------|----------|----------|------------|-------------|
-| فارکس (GBPUSD) | H4 | 300 | 600 | 2.0% |
-| فارکس (اسکالپ) | M15 | 50 | 100 | 1.0% |
-| طلا (XAUUSD) | H1 | 800 | 1600 | 1.5% |
-| اندیس‌ها (US30) | H4 | 500 | 1000 | 1.5% |
-
----
-
-## 🔧 عیب‌یابی (Troubleshooting)
-
-| خطا | راه حل |
-|-----|--------|
-| `cannot load custom indicator 'GannBox'` | فایل `GannBox.ex5` را در پوشه `Indicators` کپی کنید |
-| `OnInit critical error` | متاتریدر را ریستارت کنید |
-| معامله باز نمی‌شود | تایم‌فریم چارت را با `GannTimeframe` هماهنگ کنید |
-| ضرر متوالی بالا | `RiskPercent` را کاهش دهید (مثلاً به 1.0%) |
-
----
-
-## ⚠️ هشدار مهم
-
-```
-این ربات صرفاً برای اهداف آموزشی و کمک به تصمیم‌گیری طراحی شده است.
-هیچ تضمینی برای سودآوری وجود ندارد.
-قبل از استفاده در حساب واقعی، حتماً در حساب دمو تست کنید.
-مدیریت سرمایه صحیح مهم‌ترین بخش معاملات است.
+```txt
+Formula:
+Lot Size = (Account Balance × Risk %) / (Stop Loss Distance × Pip Value)
 ```
 
----
+### 3. Kelly Criterion (`MM_KELY = 2`)
+Calculates the optimal position size based on historical performance, including win rate and reward/loss ratio.  
+Best suited for accounts with enough trading history.
 
-## 📞 ارتباط با توسعه‌دهنده
-
-- **گیت‌هاب:** [github.com/avangardistic](https://github.com/avangardistic)
-
----
-
-## 📝 تاریخچه نسخه‌ها
-
-| نسخه | تاریخ | تغییرات |
-|------|-------|---------|
-| v3.0 | 2026 | مدیریت سرمایه داینامیک، تریلینگ استاپ، بهبود سیگنال‌ها |
-| v2.0 | 2026 | اضافه شدن روش‌های مختلف مدیریت سرمایه |
-| v1.0 | 2026 | نسخه اولیه با منطق Gann Box |
+### 4. Anti-Martingale (`MM_ANTI_MARTINGALE = 3`)
+- Increase lot size after a winning trade
+- Decrease lot size after a losing trade
 
 ---
 
-**موفق و پیروز باشید! 🚀**
+## 🛡️ Risk Management Features
+
+### Daily Loss Limit
+If daily loss reaches `MaxDailyLoss`, the bot will stop opening new trades until the next day.
+
+### Consecutive Loss Protection
+After `MaxConsecutiveLosses` losing trades in a row, the bot stops trading automatically.
+
+### Trailing Stop
+Once the trade reaches `TrailingStart` pips in profit, the stop loss moves forward automatically by `TrailingStep` pips to protect gains.
+
+---
+
+## 📈 Suggested Settings for Different Markets
+
+| Market | Timeframe | StopLoss | TakeProfit | RiskPercent |
+|-------|-----------|----------|------------|-------------|
+| Forex (GBPUSD) | `H4` | `300` | `600` | `2.0%` |
+| Forex (Scalping) | `M15` | `50` | `100` | `1.0%` |
+| Gold (XAUUSD) | `H1` | `800` | `1600` | `1.5%` |
+| Indices (US30) | `H4` | `500` | `1000` | `1.5%` |
+
+---
+
+## 🔧 Troubleshooting
+
+| Issue | Solution |
+|------|----------|
+| `cannot load custom indicator 'GannBox'` | Make sure `GannBox.ex5` is copied into the `MQL5/Indicators/` folder |
+| `OnInit critical error` | Restart MetaTrader 5 and try again |
+| No trades are opened | Make sure the chart timeframe matches `GannTimeframe` |
+| Too many consecutive losses | Reduce `RiskPercent` (for example to `1.0%`) |
+
+---
+
+## ⚠️ Disclaimer
+
+```txt
+This bot is provided for educational purposes and as a trading assistance tool only.
+There is no guarantee of profitability.
+Always test the bot on a demo account before using it on a live account.
+Proper risk management is the most important part of trading.
+```
+
+---
+
+## 📞 Developer
+
+- **GitHub:** [github.com/avangardistic](https://github.com/avangardistic)
+
+---
+
+## 📝 Version History
+
+| Version | Year | Changes |
+|--------|------|---------|
+| `v3.0` | `2026` | Dynamic money management, trailing stop, improved trade signals |
+| `v2.0` | `2026` | Added multiple money management methods |
+| `v1.0` | `2026` | Initial release with Gann Box trading logic |
+
+---
+
+## ⭐ Notes
+
+If you use this project and find it helpful, consider giving it a **star** on GitHub.
+
+---
+
+**Trade smart and stay disciplined. 🚀**
+اگر خواستی، من همین الان یک **نسخه نهایی و خیلی شیک‌تر GitHub-style** هم برات می‌نویسم.
