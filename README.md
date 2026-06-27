@@ -204,8 +204,3 @@ Proper risk management is the most important part of trading.
 ## ⭐ Notes
 
 If you use this project and find it helpful, consider giving it a **star** on GitHub.
-
----
-
-**Trade smart and stay disciplined. 🚀**
-اگر خواستی، من همین الان یک **نسخه نهایی و خیلی شیک‌تر GitHub-style** هم برات می‌نویسم.
